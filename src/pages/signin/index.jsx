@@ -1,7 +1,7 @@
 "use client";
 import { authLogin } from "@/Redux/Slices/authSlice";
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -123,6 +123,13 @@ const SignIn = () => {
                         variant="plain"
                       >
                         Sign up here
+                        {loading && (
+                          <Spinner
+                            animation="border"
+                            size="sm"
+                            className="ml-2"
+                          />
+                        )}
                       </Button>
                     </h4>
                   </Form>

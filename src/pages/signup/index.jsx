@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row, Spinner } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import authService from "@/service/auth.service";
@@ -102,6 +102,13 @@ const SignUp = () => {
                     </div>
                     <Button type="submit" disabled={loading}>
                       Sign Up
+                      {loading && (
+                        <Spinner
+                          animation="border"
+                          size="sm"
+                          className="ml-2"
+                        />
+                      )}
                     </Button>
                     <h4 className="already-account">
                       Already have an account?
