@@ -20,6 +20,7 @@ async function signIn(body) {
 
 async function signUp(body) {
     const res = await API.put(apiPath.auth.auth, body);
+
     if (res?.status === 200) {
         return res?.data?.data
     }
