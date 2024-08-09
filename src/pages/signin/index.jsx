@@ -113,8 +113,19 @@ const SignIn = () => {
                       </div>
                       <label for="rememberMe">Remember me</label>
                     </div>
-                    <Button type="submit" disabled={loading}>
+                    <Button
+                      className="d-flex justify-content-center align-items-center"
+                      type="submit"
+                      disabled={loading}
+                    >
                       Login
+                      {loading && (
+                        <Spinner
+                          animation="border"
+                          size="sm"
+                          className="ml-2"
+                        />
+                      )}
                     </Button>
                     <h4 className="already-account">
                       Don't have an account?
@@ -123,15 +134,6 @@ const SignIn = () => {
                         variant="plain"
                       >
                         Sign up here
-                        {loading ? (
-                          <Spinner
-                            animation="border"
-                            size="sm"
-                            className="ml-2"
-                          />
-                        ) : (
-                          ""
-                        )}
                       </Button>
                     </h4>
                   </Form>

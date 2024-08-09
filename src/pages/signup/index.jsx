@@ -100,16 +100,18 @@ const SignUp = () => {
                         className="invalid-feedback"
                       />
                     </div>
-                    <Button type="submit" disabled={!loading}>
+                    <Button
+                      className="d-flex justify-content-center align-items-center"
+                      type="submit"
+                      disabled={loading}
+                    >
                       Sign Up
-                      {!loading ? (
+                      {loading && (
                         <Spinner
                           animation="border"
                           size="sm"
                           className="ml-2"
                         />
-                      ) : (
-                        ""
                       )}
                     </Button>
                     <h4 className="already-account">
