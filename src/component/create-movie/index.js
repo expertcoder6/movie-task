@@ -5,6 +5,7 @@ import {
   Col,
   Container,
   Row,
+  Spinner,
 } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -25,6 +26,7 @@ const CreateMovie = ({ id }) => {
   const [loading, setLoading] = useState(false)
   const [image, setImage] = useState("")
   const [preview, setPreview] = useState(null)
+  const [isSubmiting, setIsSubmiting] = useState(false)
   const [initialValues, setInitialValues] = useState(initialVal)
 
   const validationSchema = Yup.object().shape({
@@ -49,7 +51,7 @@ const CreateMovie = ({ id }) => {
 
   const handleSubmit = async (data) => {
     let res = null
-    setLoading(true)
+    setIsSubmiting(true)
     if (id) {
       res = await authService.updateMovie(id, { ...data, image: image });
     } else {
@@ -58,7 +60,7 @@ const CreateMovie = ({ id }) => {
     if (res) {
       toast.success(res?.message)
       setTimeout(() => {
-        setLoading(false)
+        setIsSubmiting(false)
         handleNavigate()
       }, [1000])
     }
@@ -154,10 +156,28 @@ const CreateMovie = ({ id }) => {
                       />
                     </div>
                     <div className="btn-wrapper me-auto mt-5">
-                      <Button variant="secondary" type="button" onClick={handleNavigate}>
+                      <Button
+                        variant="secondary"
+                        type="button"
+                        disabled={isSubmiting}
+                        onClick={handleNavigate}
+                      >
                         Cancel
                       </Button>
-                      <Button type="submit">{id ? "Update" : "Submit"}</Button>
+                      <Button
+                        disabled={isSubmiting}
+                        className="d-flex justify-content-center align-items-center"
+                        type="submit"
+                      >
+                        {id ? "Update" : "Submit"}
+                        {isSubmiting && (
+                          <Spinner
+                            animation="border"
+                            size="sm"
+                            className="ml-2"
+                          />
+                        )}
+                      </Button>
                     </div>
                   </div>
                 </Col>
