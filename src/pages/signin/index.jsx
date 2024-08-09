@@ -123,12 +123,14 @@ const SignIn = () => {
                         variant="plain"
                       >
                         Sign up here
-                        {loading && (
+                        {loading ? (
                           <Spinner
                             animation="border"
                             size="sm"
                             className="ml-2"
                           />
+                        ) : (
+                          ""
                         )}
                       </Button>
                     </h4>
